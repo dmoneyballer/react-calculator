@@ -14,10 +14,18 @@ class App extends Component {
   }
 
   addToInput = val => {
-    this.setState({input: this.state.input + val});
+    if (isNaN(val) && isNaN(this.state.input[this.state.input.length-1])){
+      this.setState({input: this.state.input});
+    } else {
+      this.setState({input: this.state.input + val});
+    }
   };
   handleEqual = () => {
-    this.setState({input: math.eval(this.state.input)})
+    if (isNaN(this.state.input[this.state.input.length-1])) {
+      this.setState({input: this.state.input})
+    } else {
+      this.setState({input: math.eval(this.state.input)})
+    }
   }
 
 
