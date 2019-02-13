@@ -32,16 +32,18 @@ class App extends Component {
   handleNumpad = e => {
     console.log(e)
     if (e.key === "Enter") {
-      console.log("enter snad")
       this.handleEqual()
-      } else if(e.key === "0" || e.key === "." || e.key === "1"  || e.key === "2" || e.key === "3" || e.key === "4" || e.key === "5" || e.key === "6" || e.key === "7" || e.key === "8" || e.key === "9" || e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+") {
+    } else if (e.key === "Delete"){
+      this.handleClear()
+    } else if(e.key === "0" || e.key === "." || e.key === "1"  || e.key === "2" || e.key === "3" || e.key === "4" || e.key === "5" || e.key === "6" 
+      || e.key === "7" || e.key === "8" || e.key === "9" || e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+") {
         if (isNaN(Number(e.key)) && isNaN(this.state.input[this.state.input.length-1])) {
         this.setState({input: this.state.input + e.key}); 
         } else {
         this.setState({input: this.state.input + e.key}); 
       }
       
-  }
+  } // this closes
 }
   
 
