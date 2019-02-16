@@ -26,29 +26,40 @@ class App extends Component {
     if (isNaN(this.state.input[this.state.input.length-1])) {
       this.setState({input: this.state.input})
     } else {
-      this.setState({input: math.eval(this.state.input)})
+      let answer = String(math.eval(this.state.input))
+      this.setState({input: answer})
     }
+    console.log(typeof this.state.input);
   };
   handleNumpad = e => {
-    console.log(e)
+    if (e.key === "Backspace") {
+      let back = this.state.input.split("");
+      back.pop();
+      back = back.join("");
+      console.log(back);
+      this.setState({input: back});
+      console.log(typeof this.state.input);
+    }
+    if (e.key === "Delete") {
+      this.handleClear();
+    }
     if (e.key === "Enter") {
-      console.log("enter snad")
-      this.handleEqual()
-      } else if(e.key === "0" || e.key === "." || e.key === "1"  || e.key === "2" || e.key === "3" || e.key === "4" || e.key === "5" || e.key === "6" || e.key === "7" || e.key === "8" || e.key === "9" || e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+") {
+      this.handleEqual();
+    } else if(e.key === "0" || e.key === "." || e.key === "1"  || e.key === "2" || e.key === "3" || e.key === "4" || e.key === "5" || e.key === "6" || e.key === "7" || e.key === "8" || e.key === "9" || e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+") {
         if (isNaN(Number(e.key)) && isNaN(this.state.input[this.state.input.length-1])) {
-        this.setState({input: this.state.input + e.key}); 
+        this.setState({input: this.state.input});
         } else {
-        this.setState({input: this.state.input + e.key}); 
+        this.setState({input: this.state.input + e.key});
       }
-      
+
   }
 }
-  
+handleClear = (e) => this.setState({input: ""})
 
   render() {
     return (<div className="App">
         <div className="calc-wrapper">
-          <Input input={this.state.input}></Input> 
+          <Input input={this.state.input}></Input>
           <div className="row">
             <Button handleClick={this.addToInput}>7</Button>
             <Button handleClick={this.addToInput}>8</Button>
@@ -74,7 +85,7 @@ class App extends Component {
             <Button handleClick={this.addToInput}>-</Button>
           </div>
           <div className="row">
-          <ClearButton handleClear={() => this.setState({input: ""})}>
+          <ClearButton handleClear={this.handleClear}>
             Clear
           </ClearButton>
           </div>
