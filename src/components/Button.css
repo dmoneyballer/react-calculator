@@ -9,10 +9,12 @@
     color: #888888;
     flex: 1;
     outline: 1px solid #888888;
+    cursor: pointer;
 
 }
 .operator {
    background-color: #fe9241;
    color: white;
+   cursor: pointer;
 
 }

@@ -8,5 +8,6 @@
     background-color: #000000;
     color: white;
     padding: 0.5em;
-    outline: 1px solid #888888
+    outline: 1px solid #888888;
+    cursor: pointer;
 }
