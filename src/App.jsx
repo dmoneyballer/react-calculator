@@ -12,9 +12,11 @@ class App extends Component {
       input: ""
     };
   }
+
   componentDidMount () {
     document.addEventListener("keydown", this.handleNumpad);
   }
+
   addToInput = val => {
     if (isNaN(val) && isNaN(this.state.input[this.state.input.length-1])){
       this.setState({input: this.state.input});
@@ -22,6 +24,7 @@ class App extends Component {
       this.setState({input: this.state.input + val});
     }
   };
+
   handleEqual = () => {
     if (isNaN(this.state.input[this.state.input.length-1])) {
       this.setState({input: this.state.input})
@@ -29,16 +32,14 @@ class App extends Component {
       let answer = String(math.eval(this.state.input))
       this.setState({input: answer})
     }
-    console.log(typeof this.state.input);
   };
+
   handleNumpad = e => {
     if (e.key === "Backspace") {
       let back = this.state.input.split("");
       back.pop();
       back = back.join("");
-      console.log(back);
       this.setState({input: back});
-      console.log(typeof this.state.input);
     }
     if (e.key === "Delete") {
       this.handleClear();
@@ -50,10 +51,10 @@ class App extends Component {
         this.setState({input: this.state.input});
         } else {
         this.setState({input: this.state.input + e.key});
+        }
       }
-
   }
-}
+
 handleClear = (e) => this.setState({input: ""})
 
   render() {
